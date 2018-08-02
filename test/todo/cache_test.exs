@@ -20,7 +20,7 @@ defmodule Todo.CacheTest do
   end
 
   test ".clear deletes all objects from the ets table", %{list: list} do
-    Cache.clear
+    Cache.clear()
     refute Cache.find(list.name)
   end
 end

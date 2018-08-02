@@ -30,9 +30,9 @@ defmodule Todo.List do
     {:ok, state}
   end
 
-    def handle_call(:name, _from, state) do
-      {:reply, state.name, state}
-    end
+  def handle_call(:name, _from, state) do
+    {:reply, state.name, state}
+  end
 
   def handle_call(:items, _from, state) do
     {:reply, state.items, state}

@@ -26,6 +26,6 @@ defmodule Todo.Cache do
   def init(_) do
     table = :ets.new(__MODULE__, [:named_table, :public])
 
-    {:ok , table}
+    {:ok, table}
   end
 end

@@ -4,11 +4,11 @@ defmodule Todo.ServerTest do
   alias Todo.Server
 
   setup do
-    on_exit fn ->
-      Enum.each Server.lists, fn(list) ->
+    on_exit(fn ->
+      Enum.each(Server.lists(), fn list ->
         Server.delete_list(list)
-      end
-    end
+      end)
+    end)
   end
 
   test ".add_list adds a new supervised list" do
