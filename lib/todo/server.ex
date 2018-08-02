@@ -11,6 +11,10 @@ defmodule Todo.Server do
     end
   end
 
+  def delete_list(list) do
+    Supervisor.terminate_child(__MODULE__, list)
+  end
+
   def lists do
     __MODULE__
     |> Supervisor.which_children

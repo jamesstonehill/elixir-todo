@@ -3,6 +3,14 @@ defmodule Todo.ServerTest do
 
   alias Todo.Server
 
+  setup do
+    on_exit fn ->
+      Enum.each Server.lists, fn(list) ->
+        Server.delete_list(list)
+      end
+    end
+  end
+
   test ".add_list adds a new supervised list" do
     Server.add_list("Home")
     Server.add_list("Work")
@@ -17,5 +25,15 @@ defmodule Todo.ServerTest do
     list = Server.find_list("find-by-name")
 
     assert is_pid(list)
+  end
+
+  test ".delete_list deletes a list by its pid" do
+    Server.add_list("name")
+    list = Server.find_list("name")
+
+    Server.delete_list(list)
+    counts = Supervisor.count_children(Server)
+
+    assert counts.active == 0
   end
 end

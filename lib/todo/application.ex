@@ -11,8 +11,14 @@ defmodule Todo.Application do
       # Starts a worker by calling: Todo.Worker.start_link(arg)
       # {Todo.Worker, arg},
       %{
+        id: Todo.Cache,
+        start: {Todo.Cache, :start_link, []},
+        type: :worker
+      },
+      %{
         id: Todo.Server,
-        start: {Todo.Server, :start_link, []}
+        start: {Todo.Server, :start_link, []},
+        type: :supervisor
       }
     ]
 
